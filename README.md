@@ -26,3 +26,4 @@ These are the technologies necessary to run this project:
 - Buzzer
 - Moisture Sensor
 - GPS module
+![TLS certificate](certificate.png)
