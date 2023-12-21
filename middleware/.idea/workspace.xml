@@ -7,7 +7,8 @@
     <list default="true" id="9f2edcbb-7762-4025-b630-e3afdfeba75d" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/JaxRSActivator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/boundaries/SensorDBEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/controllers/UserRoles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/boundaries/SignUpEndpoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/controllers/Role.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/entities/FieldPropertyVisibilityStrategy.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/entities/Sensor.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/entities/SensorDB.java" afterDir="false" />
@@ -15,6 +16,10 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/repositories/SensorDBRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/repositories/UserRepository.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/utils/Argon2Utility.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/utils/AuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/utils/AuthorizationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/utils/Identity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/utils/OAuth2PKCE.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/microprofile-config.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DOC/Scope Statement.pdf" beforeDir="false" />
     </list>
@@ -37,7 +42,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 5
@@ -47,25 +52,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/AIM-WOT/smartWasteBin",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.applicationServers",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/AIM-WOT/smartWasteBin&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.applicationServers&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="JBoss/WildFly 30.0.0.Final" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss/WildFly 30.0.0.Final" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -154,7 +159,8 @@
       <option name="presentableId" value="Default" />
       <updated>1703065151949</updated>
       <workItem from="1703065152981" duration="155000" />
-      <workItem from="1703065342730" duration="22266000" />
+      <workItem from="1703065342730" duration="22976000" />
+      <workItem from="1703149980432" duration="5921000" />
     </task>
     <servers />
   </component>
