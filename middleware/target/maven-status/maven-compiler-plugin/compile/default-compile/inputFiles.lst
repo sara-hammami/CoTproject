@@ -1,4 +1,5 @@
 D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\entities\FieldPropertyVisibilityStrategy.java
+D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\boundaries\SignInEndpoint.java
 D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\entities\SensorDB.java
 D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\utils\Argon2Utility.java
 D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\JaxRSActivator.java
@@ -15,3 +16,4 @@ D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\utils\Identity.
 D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\boundaries\SensorDBEndpoint.java
 D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\utils\OAuth2PKCE.java
 D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\utils\AuthenticationFilter.java
+D:\AIM-WOT\smartWasteBin\src\main\java\org\eclipse\jakarta\hello\controllers\UserManager.java

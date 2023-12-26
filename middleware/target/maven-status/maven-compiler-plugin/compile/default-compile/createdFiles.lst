@@ -7,6 +7,7 @@ org\eclipse\jakarta\hello\JaxRSActivator.class
 org\eclipse\jakarta\hello\entities\User.class
 org\eclipse\jakarta\hello\controllers\Role.class
 org\eclipse\jakarta\hello\entities\FieldPropertyVisibilityStrategy.class
+org\eclipse\jakarta\hello\controllers\UserManager.class
 org\eclipse\jakarta\hello\utils\AuthenticationFilter.class
 org\eclipse\jakarta\hello\utils\Argon2Utility.class
 org\eclipse\jakarta\hello\boundaries\SignUpEndpoint.class
@@ -15,3 +16,4 @@ org\eclipse\jakarta\hello\boundaries\SensorDBEndpoint.class
 org\eclipse\jakarta\hello\utils\OAuth2PKCE.class
 org\eclipse\jakarta\hello\repositories\SensorDBRepository.class
 org\eclipse\jakarta\hello\Hello.class
+org\eclipse\jakarta\hello\boundaries\SignInEndpoint.class
