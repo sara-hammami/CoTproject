@@ -1,0 +1,35 @@
+/* styles/splashscreen.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.splashscreen-container {
+    background-color: #fff;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splashscreen-content {
+    text-align: center;
+}
+
+.logo-image {
+    width: 200px;
+    height: auto;
+}
+
+.slogan-text {
+    font-size: 18px;
+    font-family: 'Lato', serif;
+    color: #38A89D;
+    margin-top: 20px;
+}
+
+.loading-spinner {
+    margin-top: 50px;
+}

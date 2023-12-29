@@ -1,0 +1,147 @@
+/* dashboard.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#main-container {
+    width: 100%;
+    background: linear-gradient(#051f30, #000000);
+    display: flex;
+    height: 100vh;
+}
+
+.menu {
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 8px 0px 9px 0px #00000014;
+    backdrop-filter: blur(5px);
+    min-height: 100vh;
+    transition: width 0.3s;
+    overflow: hidden;
+}
+
+.menu:hover {
+    width: fit-content;
+    padding-right:5px;
+}
+
+.menu:hover li span:nth-child(2) {
+    display: block;
+}
+
+.menu-content li {
+    list-style: none;
+    border-radius: 0px 50px 50px 0;
+    transition: .3s;
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+.menu-content li:nth-child(1) {
+    margin-top: 20px;
+}
+.menu-content li:hover {
+    background: #0c0c0c;
+    padding-right: 5px;
+}
+
+.menu-content li span:nth-child(2) {
+    display: none;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(213, 213, 213);
+    display: flex;
+    align-items: center;
+    font-family: 'calibri';
+}
+
+.material-symbols-outlined {
+    font-size: 25px;
+    margin-right: 10px;
+    background: #0c0c0c;
+    border-radius: 50%;
+    padding: 10px;
+}
+
+#app {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    z-index: 0;
+    display: flex; /* Add display: flex */
+}
+
+h1 {
+    color: #423e79;
+    text-align: center;
+    margin: 20px ;
+}
+
+.can-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+/* ... (previous styles) ... */
+
+.can {
+    width: 200px; /* Set a specific width for all containers */
+    background-color: #fff;
+    border: 1px solid #1DB954;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-right: 20px; /* Add margin to the right side */
+    margin-left: 10px; /* Add margin to the left side to separate from the sidebar */
+    flex-grow: 0; /* Ensure containers won't grow beyond the specified width */
+    margin-top: 40px;
+}
+
+/* ... (previous styles) ... */
+
+
+.can img {
+    height: 71px;
+}
+
+.can-info {
+    margin-top: 10px;
+}
+
+.can-info img {
+    height: 21px;
+    margin-right: 10px;
+}
+
+.can-info p {
+    font-size: 14px;
+    color: #281852;
+    margin: 0;
+}
+
+.can-percentage {
+    font-size: 18px;
+    color: #281852;
+    font-weight: bold;
+}
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu {
+        width: 100%;
+    }
+
+    .can {
+        width: 100%;
+    }
+}

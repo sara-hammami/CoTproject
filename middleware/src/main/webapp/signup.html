@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="./styles/signup.css">
+    <title>Garbage Monitoring System</title>
+</head>
+
+<body>
+<div id="main-container">
+    <div class="menu">
+        <ul class="menu-content">
+            <li><a href="home.html"><span class="material-symbols-outlined">home</span><span>Home</span></a></li>
+            <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span><span>DashBoard</span></a></li>
+            <li><a href="map.html"><span class="material-symbols-outlined">explore</span><span>Explore</span></a></li>
+            <!--<li><a href="#"><span class="material-symbols-outlined">analytics</span><span>Analytics</span></a></li>
+            <li><a href="#"><span class="material-symbols-outlined">settings</span><span>Settings</span></a></li>-->
+            <li><a href="profile.html"><span class="material-symbols-outlined">person</span><span>Account</span></a></li>
+            <!--<li><a href="/pages/login.html"><span class="material-symbols-outlined">login</span><span>Login</span></a></li>-->
+            <li><a href="about.html"><span class="material-symbols-outlined">email</span><span>Contact</span></a></li>
+            <li><a href="home.html"><span class="material-symbols-outlined">logout</span><span>Logout</span></a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="signup-container">
+                    <div class="signup-header">
+                        <h1>Register</h1>
+                        <p>To create an account!</p>
+                    </div>
+                    <div class="signup-form">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" placeholder="Enter your full name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" id="email" placeholder="xxxxx@gmail.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="**************">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="passwordConfirmation">Confirm Password</label>
+                            <input type="password" id="passwordConfirmation" placeholder="**************">
+                        </div>
+
+                        <button onclick="register()">Register</button>
+
+                        <div class="login-link">
+                            <p>Already have an account? <span onclick="goToLogin()">Login</span></p>
+                        </div>
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./js/signup.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="./styles/map.css">
+    <style>
+
+    </style>
+    <title>Garbage Monitoring System</title>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+</head>
+
+<body>
+<div id="main-container">
+    <div class="menu">
+        <ul class="menu-content">
+            <li><a href="welcome.html"><span class="material-symbols-outlined">home</span><span>Home</span></a></li>
+            <li><a href="dashboard.html"><span class="material-symbols-outlined">dashboard</span><span>DashBoard</span></a></li>
+            <li><a href="map.html"><span class="material-symbols-outlined">explore</span><span>Explore</span></a></li>
+            <!--<li><a href="#"><span class="material-symbols-outlined">analytics</span><span>Analytics</span></a></li>
+            <li><a href="#"><span class="material-symbols-outlined">settings</span><span>Settings</span></a></li>-->
+            <li><a href="profile.html"><span class="material-symbols-outlined">person</span><span>Account</span></a></li>
+            <!--<li><a href="/pages/login.html"><span class="material-symbols-outlined">login</span><span>Login</span></a></li>-->
+            <li><a href="about.html"><span class="material-symbols-outlined">email</span><span>Contact</span></a></li>
+            <li><a href="welcome.html"><span class="material-symbols-outlined">logout</span><span>Logout</span></a></li>
+        </ul>
+    </div>
+    <div id="app">
+    <div id="distance-container"></div>
+    <button id="get-current-location-btn">Get Current Location</button>
+    </div>
+</div>
+<script src="./js/map.js"></script>
+</body>
+
+</html>
