@@ -5,8 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9f2edcbb-7762-4025-b630-e3afdfeba75d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/script.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/Hello.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/HelloWorldResource.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/JaxRSActivator.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/boundaries/SensorDBEndpoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/boundaries/SignInEndpoint.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/boundaries/SignUpEndpoint.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/controllers/Role.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/controllers/UserManager.java" afterDir="false" />
@@ -22,6 +39,9 @@
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/utils/Identity.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/org/eclipse/jakarta/hello/utils/OAuth2PKCE.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/microprofile-config.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jboss-web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/images/jakartaee_logo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../DOC/Scope Statement.pdf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -169,6 +189,7 @@
       <workItem from="1703065152981" duration="155000" />
       <workItem from="1703065342730" duration="22976000" />
       <workItem from="1703149980432" duration="13452000" />
+      <workItem from="1703583671808" duration="3901000" />
     </task>
     <servers />
   </component>
