@@ -24,6 +24,7 @@ async function performLogin() {
 
         // Navigate to the home page or perform other actions
         console.log('Successfully logged in');
+        window.location.href = 'dashboard.html';
     } catch (error) {
         showToast('Invalid Login');
         console.error(error);
