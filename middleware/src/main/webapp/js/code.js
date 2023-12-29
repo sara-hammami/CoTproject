@@ -1,11 +1,22 @@
-// code.js
-
 // Function to display a toast message
-// code.js
+function showToast(message) {
+    // Create a toast element
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = message;
+
+    // Append the toast to the body
+    document.body.appendChild(toast);
+
+    // Remove the toast after a certain duration
+    setTimeout(() => {
+        document.body.removeChild(toast);
+    }, 3000); // Adjust the duration as needed
+}
 
 // Function to send a verification code to the server
-async function verifyCodeRequest(code) {
-    const url = 'https://smarwastemanagement.ltn:8080/mail/' + code; // Replace with your actual endpoint
+async function verifCode(code) {
+    const url = `https://smarwastemanagement.ltn:8443/api/mail/${code}`;
 
     try {
         const response = await fetch(url, {
@@ -13,23 +24,27 @@ async function verifyCodeRequest(code) {
             headers: {
                 'Content-Type': 'application/json',
             },
+            redirect: 'manual', // Equivalent to followRedirects: false
         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
         const responseData = await response.json();
-        return responseData.status; // Adjust based on your server response structure
+
+        if (response.ok) {
+            const data = responseData.toString();
+            const data1 = data.substring(30, 66);
+            return data1;
+        } else {
+            throw new Error('Request failed with status ' + response.status);
+        }
     } catch (error) {
-        console.error('Error during code verification request: ', error);
-        throw error; // Propagate the error
+        console.error('Error:', error.message);
+        throw error;
     }
 }
 
 // Function to request a new verification code from the server
 async function resendCodeRequest() {
-    const url = 'https://smarwastemanagement.ltn:8080/mail'; // Replace with your actual endpoint
+    const url = 'https://smarwastemanagement.ltn:8443/api/mail'; // Replace with your actual endpoint
 
     try {
         const response = await fetch(url, {
@@ -55,21 +70,6 @@ async function resendCodeRequest() {
     }
 }
 
-function showToast(message) {
-    // Create a toast element
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-
-    // Append the toast to the body
-    document.body.appendChild(toast);
-
-    // Remove the toast after a certain duration
-    setTimeout(() => {
-        document.body.removeChild(toast);
-    }, 3000); // Adjust the duration as needed
-}
-
 // Function to verify the entered code
 function verifyCode() {
     // Get the code input value
@@ -77,7 +77,7 @@ function verifyCode() {
     const code = codeInput.value.trim();
 
     // Perform code verification logic
-    verifyCodeRequest(code)
+    verifCode(code)
         .then((response) => {
             // Check if the code is valid
             if (response === 'Correct verification code!') {
@@ -111,7 +111,14 @@ function resendCode() {
 }
 
 // Attach the verifyCode function to the button click event
-document.getElementById('verifyButton').addEventListener('click', verifyCode);
+document.addEventListener('DOMContentLoaded', function () {
+    const verifyButton = document.getElementById('verifyButton');
+    if (verifyButton) {
+        verifyButton.addEventListener('click', verifyCode);
+    }
 
-// Attach the resendCode function to the button click event
-document.getElementById('resendButton').addEventListener('click', resendCode);
+    const resendButton = document.getElementById('resendButton');
+    if (resendButton) {
+        resendButton.addEventListener('click', resendCode);
+    }
+});

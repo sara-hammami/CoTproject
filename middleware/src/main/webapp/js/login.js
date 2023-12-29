@@ -1,90 +1,103 @@
-// login.js
-
-async function performLogin() {
-    const emailInput = document.getElementById('emailInput').value;
-    const passwordInput = document.getElementById('passwordInput').value;
-
-    // Validation logic (similar to Flutter validation)
-    if (!emailInput.trim()) {
-        showToast('Please Enter your email');
-        return;
-    }
-
-    // Add more validation if needed...
-
-    try {
-        // Perform the login using asynchronous functions
-        const signInId = await requestLoginId();
-        const authCode = await requestAuthCode(emailInput, passwordInput, signInId);
-        const token = await requestToken(authCode);
-
-        // Store tokens (you may want to implement a secure storage mechanism)
-        localStorage.setItem('accessToken', token.accessToken);
-        localStorage.setItem('refreshToken', token.refreshToken);
-
-        // Navigate to the home page or perform other actions
-        console.log('Successfully logged in');
-        window.location.href = 'dashboard.html';
-    } catch (error) {
-        showToast('Invalid Login');
-        console.error(error);
-    }
+function generateRandomString() {
+    var array = new Uint32Array(28);
+    window.crypto.getRandomValues(array);
+    return Array.from(array, dec => ('0' + dec.toString(16)).slice(-2)).join('');
 }
 
-async function requestLoginId() {
-    const response = await fetch('http://smarwastemanagement.ltn:8080/api/authorize', {
-        method: 'POST',
+async function sha256(plain) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(plain);
+    return window.crypto.subtle.digest('SHA-256', data);
+}
+
+function base64urlencode(str) {
+    return btoa(String.fromCharCode.apply(null, new Uint8Array(str)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+async function pkceChallengeFromVerifier(v) {
+    const hashed = await sha256(v);
+    return base64urlencode(hashed);
+}
+
+function utf8_to_b64_updated(str) {
+    return window.btoa(decodeURIComponent(encodeURIComponent(str)));
+}
+
+window.onload = start;
+
+async function start() {
+    var state = generateRandomString();
+    var code_verifier = generateRandomString();
+    var code_challenge = await pkceChallengeFromVerifier(code_verifier);
+
+    console.log(state);
+    console.log(code_verifier);
+    localStorage.setItem("codeverif", code_verifier);
+    console.log(code_challenge);
+
+    var step = utf8_to_b64_updated(state + "#" + code_challenge);
+
+    console.log(state + "#" + code_challenge);
+    console.log(step);
+
+    var step2 = "Bearer " + step;
+
+    $.ajax({
+        url: 'https://smarwastemanagement.ltn:8443/api/authorize',
+        type: 'POST',
         headers: {
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Pre-Authorization': 'Bearer YOUR_ENCODED_STRING', // Replace with your encoded string
+            'Pre-Authorization': step2
         },
+        complete: function (data) {
+            console.log('Load was performed.');
+            console.log(data.responseJSON);
+            localStorage.setItem("signInId", data.responseJSON.signInId);
+
+            document.getElementById("myButton").onclick = function () {
+                var signInId = localStorage.getItem("signInId");
+                var mail = document.getElementById("emailInput").value;
+                var password = document.getElementById("passwordInput").value;
+                console.log(mail)
+                let reqObj = {"mail": mail, "password": password, "signInId": signInId};
+
+                $.ajax({
+                    url: 'https://smarwastemanagement.ltn:8443/api/authenticate/',
+                    type: 'POST',
+                    data: JSON.stringify(reqObj),
+                    dataType: 'json',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        var code_verifier = localStorage.getItem("codeverif");
+                        localStorage.setItem("mail", mail);
+                        var access = "Bearer " + utf8_to_b64_updated(data.authCode + '#' + code_verifier);
+
+                        $.ajax({
+                            url: 'https://smarwastemanagement.ltn:8443/api/oauth/token',
+                            type: 'GET',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                'Post-Authorization': access
+                            },
+                            success: function (data) {
+                                console.log(data);
+                                localStorage.setItem("accesstoken", data.accessToken);
+                                localStorage.setItem("refreshtoken", data.refreshToken);
+                                localStorage.removeItem("signInId");
+                                console.log('ok');
+                                location.href = "dashboard.html";
+                            }
+                        });
+                    }
+                });
+            };
+        }
     });
-
-    const data = await response.json();
-    return data.signInId;
 }
-
-async function requestAuthCode(email, password, signInId) {
-    const response = await fetch('http://smarwastemanagement.ltn:8080/api/authenticate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            mail: email,
-            password: password,
-            signInId: signInId,
-        }),
-    });
-
-    const data = await response.json();
-    return data.authCode;
-}
-
-async function requestToken(authCode) {
-    const response = await fetch('http://smarwastemanagement.ltn:8080/api/oauth/token', {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Post-Authorization': 'Bearer YOUR_ENCODED_STRING', // Replace with your encoded string
-        },
-    });
-
-    return await response.json();
-}
-
-function showToast(message) {
-    // Create a toast element
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-
-    // Append the toast to the body
-    document.body.appendChild(toast);
-
-    // Remove the toast after a certain duration
-    setTimeout(() => {
-        document.body.removeChild(toast);
-    }, 3000); // Adjust the duration as needed
-}
-

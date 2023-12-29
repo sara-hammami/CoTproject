@@ -59,7 +59,7 @@ function validation(){
 }
 
 function requestSignup(mail, name, password, permission) {
-    const preLoginUrl = "http://smarwastemanagement.ltn:8080/api/user";
+    const preLoginUrl = "https://smarwastemanagement.ltn:8443/api/user";
     const data = {
         mail: mail,
         fullname: name,

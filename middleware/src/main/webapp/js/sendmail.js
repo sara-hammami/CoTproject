@@ -1,51 +1,40 @@
-// sendmail.js
+async function sendMail(email) {
+    const url = `https://smarwastemanagement.ltn:8443/api/mail/${email}`;
 
-// Function to validate email format
-function isValidEmail(email) {
-    const emailRegex = /^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+$/;
-    return emailRegex.test(email.trim());
-}
-
-// Function to display a toast message
-function showToast(message) {
-    // Create a toast element
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.textContent = message;
-
-    // Append the toast to the body
-    document.body.appendChild(toast);
-
-    // Remove the toast after a certain duration
-    setTimeout(() => {
-        document.body.removeChild(toast);
-    }, 3000); // Adjust the duration as needed
-}
-
-// Function to send mail
-function sendCode() {
-    // Get the email input value
-    const emailInput = document.getElementById('email');
-    const email = emailInput.value.trim();
-
-    // Validate the email format
-    if (!isValidEmail(email)) {
-        showToast('Please Enter a valid email');
-        return;
-    }
-
-    // Perform the mail sending logic
-    sendMail(email)
-        .then(() => {
-            // Navigate to the code page
-            window.location.href = '/pages</code.html';
-        })
-        .catch((error) => {
-            // Display an error toast
-            showToast('Failed to send code. Please try again.');
-            console.error('Error during mail sending: ', error);
+    try {
+        const response = await fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
+
+        if (!response.ok) {
+            throw new Error('Failed to send mail');
+        }
+
+        const responseData = await response.json();
+        console.log('Mail sent:', responseData);
+        return responseData;
+    } catch (error) {
+        console.error('Error sending mail:', error.message);
+        throw error;
+    }
 }
 
-// Attach the sendCode function to the button click event
-document.getElementById('sendCodeButton').addEventListener('click', sendCode);
+// Example usage:
+
+// Assuming you have an HTML input field for email and a button with the ID 'Sendcode'
+const emailInput = document.getElementById('email');
+
+// Send mail when the user clicks the button
+document.getElementById('Sendcode').addEventListener('click', async () => {
+    const email = emailInput.value.trim();
+    try {
+        await sendMail(email);
+        // Display success message or perform other actions
+    } catch (error) {
+        // Display error message or handle the error
+        console.error('Error:', error.message);
+    }
+});

@@ -8,7 +8,6 @@
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles/login.css">
-    <script src="./js/login.js" defer></script>
     <title>Garbage Monitoring System</title>
 </head>
 
@@ -44,7 +43,7 @@
                 <div class="login-form-container">
                     <label for="emailInput"></label><input type="text" class="form-control login-input" placeholder="Email" id="emailInput">
                     <label for="passwordInput"></label><input type="password" class="form-control login-input" placeholder="Password" id="passwordInput">
-                    <button class="btn btn-success login-button" onclick="performLogin()">Login</button>
+                    <button class="btn btn-success login-button"  id="myButton">Login</button>
                     <a href="sendmail.html" class="forgot-password-link">Forgot Password?</a>
                     <p class="signup-prompt">You don’t have an account? <a href="signup.html" class="signup-link">SIGN UP</a></p>
                 </div>
@@ -52,8 +51,9 @@
         </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./js/login.js"></script>
 
 </body>
 </html>
-
 

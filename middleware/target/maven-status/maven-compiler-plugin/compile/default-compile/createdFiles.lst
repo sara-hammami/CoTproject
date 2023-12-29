@@ -17,3 +17,4 @@ org\eclipse\jakarta\hello\utils\OAuth2PKCE.class
 org\eclipse\jakarta\hello\repositories\SensorDBRepository.class
 org\eclipse\jakarta\hello\Hello.class
 org\eclipse\jakarta\hello\boundaries\SignInEndpoint.class
+org\eclipse\jakarta\hello\boundaries\ProfileEndpoint.class
