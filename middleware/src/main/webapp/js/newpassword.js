@@ -1,42 +1,43 @@
 // Function to change the password
-function changePassword(code, password) {
-    const url = `https://api.smartgarbagecot.me/api/mail/${code}/${password}`;
+async function changePassword(code, password) {
+    const url = `https://smarwastemanagement.ltn:8443/api/mail/${code}/${password}`;
 
-    // Define request options
-    const requestOptions = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    };
-
-    // Make the POST request using Fetch API
-    fetch(url, requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Request failed with status ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(responseData => {
-            console.log('Response:', responseData);
-            // Handle success, e.g., display a success message
-        })
-        .catch(error => {
-            console.error('Error:', error.message);
-            // Handle error, e.g., display an error message
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
         });
+
+        const responseData = await response.json();
+
+        if (response.ok) {
+            // Password changed successfully, redirect to the login page
+            console.log('Response:', responseData);
+            window.location.href = 'login.html'; // Replace with the actual login page URL
+        } else {
+            // Handle password change failure
+            console.error('Request failed with status ' + response.status);
+            // Optionally, you can display an error message or handle the failure in another way
+        }
+    } catch (error) {
+        // Handle fetch error
+        console.error('Error during password change:', error.message);
+        // Optionally, you can display an error message or handle the error in another way
+    }
 }
 
 // Add event listener to the "Update" button
-document.getElementById('update').addEventListener('click', function() {
+document.getElementById('update').addEventListener('click', async function() {
     const password = document.getElementById('password').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
+    const verificationCode = document.getElementById('codeInput').value;
 
     // Check if passwords match
     if (password === confirmPassword) {
-        const verificationCode = 'your_verification_code_here'; // Replace with the actual verification code
-        changePassword(verificationCode, password);
+        // Call the changePassword function
+        await changePassword(verificationCode, password);
     } else {
         console.error('Passwords do not match');
         // Handle password mismatch, e.g., display an error message

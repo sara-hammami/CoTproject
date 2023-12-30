@@ -88,8 +88,14 @@ async function start() {
                             },
                             success: function (data) {
                                 console.log(data);
+                                // Store the access token using SecureStorage
                                 localStorage.setItem("accesstoken", data.accessToken);
-                                localStorage.setItem("refreshtoken", data.refreshToken);
+
+
+                                // Store the refresh token if needed
+                                localStorage.setItem("refreshtoken",data.refreshToken);
+
+                                // Remove the signInId
                                 localStorage.removeItem("signInId");
                                 console.log('ok');
                                 location.href = "dashboard.html";

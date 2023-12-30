@@ -7,14 +7,17 @@ D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\utils\A
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\repositories\SensorDBRepository.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\entities\User.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\Hello.java
+D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\boundaries\ForgottenPasswordEndpoint.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\controllers\Role.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\utils\AuthorizationFilter.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\utils\OAuth2PKCE.java
+D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\boundaries\SensorJSONEncoder.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\boundaries\SignUpEndpoint.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\boundaries\ProfileEndpoint.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\utils\Argon2Utility.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\boundaries\SignInEndpoint.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\controllers\UserManager.java
+D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\boundaries\SensorJSONDecoder.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\HelloWorldResource.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\repositories\UserRepository.java
 D:\AIM-WOT\CoTproject\middleware\src\main\java\org\eclipse\jakarta\hello\entities\Sensor.java

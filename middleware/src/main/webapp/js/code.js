@@ -31,7 +31,7 @@ async function verifCode(code) {
 
         if (response.ok) {
             const data = responseData.toString();
-            const data1 = data.substring(30, 66);
+            const data1 = responseData.substring(30, 66);
             return data1;
         } else {
             throw new Error('Request failed with status ' + response.status);
@@ -42,33 +42,7 @@ async function verifCode(code) {
     }
 }
 
-// Function to request a new verification code from the server
-async function resendCodeRequest() {
-    const url = 'https://smarwastemanagement.ltn:8443/api/mail'; // Replace with your actual endpoint
 
-    try {
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const responseData = await response.json();
-        // Log or handle the response data if needed
-        console.log('Resend code response: ', responseData);
-
-        // Return success or any relevant data
-        return responseData;
-    } catch (error) {
-        console.error('Error during code resend request: ', error);
-        throw error; // Propagate the error
-    }
-}
 
 // Function to verify the entered code
 function verifyCode() {
@@ -95,21 +69,6 @@ function verifyCode() {
         });
 }
 
-// Function to resend the verification code
-function resendCode() {
-    // Perform code resend logic
-    resendCodeRequest()
-        .then(() => {
-            // Display a success toast
-            showToast('Code resent successfully');
-        })
-        .catch((error) => {
-            // Display an error toast
-            showToast('Failed to resend code. Please try again.');
-            console.error('Error during code resend: ', error);
-        });
-}
-
 // Attach the verifyCode function to the button click event
 document.addEventListener('DOMContentLoaded', function () {
     const verifyButton = document.getElementById('verifyButton');
@@ -117,8 +76,15 @@ document.addEventListener('DOMContentLoaded', function () {
         verifyButton.addEventListener('click', verifyCode);
     }
 
-    const resendButton = document.getElementById('resendButton');
-    if (resendButton) {
-        resendButton.addEventListener('click', resendCode);
-    }
+    // Assuming you have an HTML input field for email and a button with the ID 'Sendcode'
+    document.getElementById('Sendcode').addEventListener('click', async () => {
+        try {
+            await resendCodeRequest();
+            // Display success message or perform other actions
+            console.log('Verification code sent successfully!');
+        } catch (error) {
+            // Display error message or handle the error
+            console.error('Error:', error.message);
+        }
+    });
 });
