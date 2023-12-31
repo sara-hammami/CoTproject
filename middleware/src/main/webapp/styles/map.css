@@ -6,16 +6,17 @@
 
 #main-container {
     width: 100%;
-    background: linear-gradient(#051f30, #000000);
+    /*background: linear-gradient(#051f30, #000000);*/
+    background-color: #c9af98;
     display: flex;
     height: 100vh;
 }
 
 .menu {
     width: fit-content;
-    background: rgba(255, 255, 255, 0.18);
+    /*background: rgba(255, 255, 255, 0.18);
     box-shadow: 8px 0px 9px 0px #00000014;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);*/
     min-height: 100vh;
     transition: width 0.3s;
     overflow: hidden;
@@ -41,8 +42,9 @@
     margin-top: 20px;
 }
 .menu-content li:hover {
-    background: #0c0c0c;
-    padding-right: 5px;
+    background: #3a4660;
+    padding-right: 10px;
+
 }
 
 .menu-content li span:nth-child(2) {
@@ -60,7 +62,7 @@ a {
 .material-symbols-outlined {
     font-size: 25px;
     margin-right: 10px;
-    background: #0c0c0c;
+    background: #3a4660;
     border-radius: 50%;
     padding: 10px;
 }
@@ -79,7 +81,7 @@ a {
     bottom: 20px;
     left: 20px;
     z-index: 1; /* Ensure the button is above the map */
-    background-color: #0c0c0c;
+    background-color: #3a4660;
     color: white;
     padding: 10px;
     border: none;
