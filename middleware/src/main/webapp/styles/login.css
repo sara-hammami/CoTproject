@@ -2,67 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'calibri', serif;
 }
 
 #main-container {
     width: 100%;
-    background: linear-gradient(#051f30, #000000);
+    /*background: linear-gradient(#051f30, #000000);*/
+    background-color: #c9af98;
     display: flex;
     height: 100vh;
-}
-
-.menu {
-    width: fit-content;
-    background: rgba(255, 255, 255, 0.18);
-    box-shadow: 8px 0px 9px 0px #00000014;
-    backdrop-filter: blur(5px);
-    min-height: 100vh;
-    transition: width 0.3s;
-    overflow: hidden;
-}
-
-.menu:hover {
-    width: fit-content;
-    padding-right:5px;
-}
-
-.menu:hover li span:nth-child(2) {
-    display: block;
-}
-
-.menu-content li {
-    list-style: none;
-    border-radius: 0px 50px 50px 0;
-    transition: .3s;
-    margin-bottom: 20px;
-    padding-left: 10px;
-}
-.menu-content li:nth-child(1) {
-    margin-top: 20px;
-}
-.menu-content li:hover {
-    background: #0c0c0c;
-    padding-right: 5px;
-}
-
-.menu-content li span:nth-child(2) {
-    display: none;
-}
-
-a {
-    text-decoration: none;
-    color: rgb(213, 213, 213);
-    display: flex;
-    align-items: center;
-    font-family: 'calibri';
-}
-
-.material-symbols-outlined {
-    font-size: 25px;
-    margin-right: 10px;
-    background: #0c0c0c;
-    border-radius: 50%;
-    padding: 10px;
 }
 
 #app {
@@ -74,77 +22,159 @@ a {
 }
 
 
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    background-color: snow;
+    padding: 15px; /* Increased padding */
+    height: auto; /* Set height to auto */
+}
 
+.container img {
+    width: 50%; /* Adjust the width as needed */
+}
 
-
-
-
-.login-container {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        width: 80%; /* Adjust the width as needed */
-        max-width: 400px; /* Set a maximum width if necessary */
-        padding-top: 20px; /* Adjust padding as needed */
-        background-color: snow;
-    }
-
-
-.login-heading {
+.container h2 {
     font-size: 2em;
     font-weight: bold;
     margin-top: 10px; /* Reduced margin */
     color: rgba(0, 0, 0, 0.89); /* Change to the desired color */
 }
 
-.login-subheading {
+.container p {
     font-size: 1.2em;
     font-weight: 300;
     margin-top: 5px; /* Reduced margin */
     color: #333; /* Change to the desired color */
 }
 
+.container label {
+    display: block;
+    text-align: left; /* Align label text to the left */
+    margin-top: 15px; /* Adjust margin as needed */
+    margin-bottom: 5px;
+}
+
+.container input {
+    margin-bottom: 15px; /* Reduced margin */
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.container button {
+    padding: 10px 20px;
+    background-color: #3a4660;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/*
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'calibri', serif;
+}
+
+#main-container {
+    width: 100%;
+    background-color: #c9af98;
+    display: flex;
+    min-height: 100vh;
+}
+
+#app {
+    flex: 1;
+    position: relative;
+    z-index: 0;
+    display: flex;
+}
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    background-color: snow;
+    padding: 15px;
+    height: auto;
+}
+
+.login-heading {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-top: 10px;
+    color: rgba(0, 0, 0, 0.89);
+}
+
+.login-subheading {
+    font-size: 1.2em;
+    font-weight: 300;
+    margin-top: 5px;
+    color: #333;
+}
+
 .centered-image {
-    width: auto;
-    height: auto;/* Adjust the width as needed */
-    margin-top: 10px; /* Reduced margin */
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
 }
 
 .login-input {
-    width: auto;
-    /* Reduced margin */
+    width: 90%;
+    height:40px;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #79b7a0;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #0c0c0c;
 }
 
 .login-button {
-    margin-top: 5px;
-    padding: 8px 16px; /* Reduced padding */
-    font-size: 14px; /* Reduced font size */
+    margin-top: 10px;
+    padding: 10px 16px;
+    font-size: 16px;
     font-weight: bold;
 }
 
-.forgot-password-link {
-    display: block;
-    margin-top: 5px; /* Reduced margin */
-    color: #535353;
-    font-size: 12px;
-}
-
+.forgot-password-link,
 .signup-prompt {
-    margin-top: 10px; /* Reduced margin */
+    display: block;
+    margin-top: 8px;
     color: #535353;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .signup-link {
     color: #00A3FF;
     font-weight: bold;
 }
-
-/* Add this CSS for the toast styling */
 
 .toast {
     position: fixed;
@@ -161,15 +191,39 @@ a {
 }
 
 
-
-
-
-
-
-/* Responsive Styles */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
     .menu {
-        width: 100%;
+        width: fit-content;
+        padding-right: 5px;
     }
 
+    .menu-content li {
+        margin-bottom: 15px;
+    }
+
+    .login-container {
+        width: 50%;
+        max-width: 600px;
+    }
 }
+
+@media (max-width: 767px) {
+    .menu {
+        width: 100%;
+        padding-right: 0;
+    }
+
+    .menu-content li {
+        margin-bottom: 8px;
+    }
+
+    .login-container {
+        width: 90%;
+        max-width: 400px;
+    }
+
+    .centered-image {
+        max-width: 100%;
+    }
+}
+*/
