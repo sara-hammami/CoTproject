@@ -119,7 +119,7 @@ async function register() {
         await requestSignup(mailController.value, nameController.value, passwordController.value, 1);
         // If requestSignup is successful, navigate to the success page
         if (!loading) {
-            window.location.href = 'registersuccess.html';
+            window.location.href = 'login.html';
         }
     } catch (error) {
         showToast('Invalid Signup');
