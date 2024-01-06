@@ -7,21 +7,29 @@ const mailController = document.getElementById('email');
 const passwordController = document.getElementById('password');
 const passwordConfirmationController = document.getElementById('passwordConfirmation');
 
-function showToast(message) {
+function showToast(message, isError = false) {
     // Create a toast element
     const toast = document.createElement('div');
-    toast.className = 'toast';
+    toast.className = isError ? 'error-toast' : 'success-toast';
     toast.textContent = message;
 
     // Append the toast to the body
     document.body.appendChild(toast);
 
+    // Add the show class to fade in the toast
+    setTimeout(() => {
+        toast.classList.add('show');
+    }, 0);
+
     // Remove the toast after a certain duration
     setTimeout(() => {
-        document.body.removeChild(toast);
+        toast.classList.remove('show');
+        // Delay the removal to allow the fade-out transition
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 300);
     }, 3000); // Adjust the duration as needed
 }
-
 function validation(){
     if (nameController.value.trim() === '') {
         showToast('Please Enter your name');
@@ -85,31 +93,20 @@ function requestSignup(mail, name, password, permission) {
         })
         .then(responseData => {
             console.log('response : ', responseData);
-            // Do something with the responseData if needed
+            // Check for specific conditions and display messages accordingly
+            if (responseData.error) {
+                showToast(responseData.error, true);
+            } else {
+                showToast('Signup successful', false);
+                // Do something with the responseData if needed
+            }
         })
         .catch(error => {
+            showToast('Error during signup', true);
             console.error('Error during signup: ', error);
         });
 }
 
-/*
-function register() {
-    validation();
-    console.log(loading);
-
-    try {
-        requestSignup(mailController.value, nameController.value, passwordController.value, 1);
-    } catch (error) {
-        showToast('Invalid Signup');
-        loading = true;
-    }
-
-    if (!loading) {
-        // Implement navigation to the success page
-        window.location.href = '/pages/registersuccess.html';
-    }
-}
-*/
 
 async function register() {
     validation();

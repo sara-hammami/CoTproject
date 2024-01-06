@@ -2,9 +2,11 @@
 
 async function logout() {
     // Your logout logic here
-    // For example, clearing secure data
+    //  clearing all session-related data
     const deleted1 = await secureStorage.deleteSecureData("accessToken");
     const deleted2 = await secureStorage.deleteSecureData("refreshToken");
+    localStorage.removeItem("signInId");
+    localStorage.removeItem("mail");
 
     // Redirect to the login page
     window.location.href = 'login.html';

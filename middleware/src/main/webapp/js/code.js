@@ -27,11 +27,10 @@ async function verifCode(code) {
             redirect: 'manual', // Equivalent to followRedirects: false
         });
 
-        const responseData = await response.json();
-
         if (response.ok) {
+            const responseData = await response.json();
             const data = responseData.toString();
-            const data1 = responseData.substring(30, 66);
+            const data1 = data.substring(30, 66);
             return data1;
         } else {
             throw new Error('Request failed with status ' + response.status);
@@ -77,14 +76,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Assuming you have an HTML input field for email and a button with the ID 'Sendcode'
-    document.getElementById('Sendcode').addEventListener('click', async () => {
-        try {
-            await resendCodeRequest();
-            // Display success message or perform other actions
-            console.log('Verification code sent successfully!');
-        } catch (error) {
-            // Display error message or handle the error
-            console.error('Error:', error.message);
-        }
-    });
+
 });

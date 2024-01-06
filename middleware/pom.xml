@@ -25,9 +25,9 @@
 			<version>1.0.0-b7</version>
 		</dependency>
 		<dependency>
-			<groupId>jakarta.nosql</groupId>
-			<artifactId>nosql-document</artifactId>
-			<version>1.0.0-b7</version>
+			<groupId>org.eclipse.paho</groupId>
+			<artifactId>org.eclipse.paho.mqttv5.client</artifactId>
+			<version>1.2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.jnosql.databases</groupId>
@@ -71,11 +71,17 @@
 			<version>2.1.0</version>
 		</dependency>
 		<dependency>
+			<groupId>jakarta.nosql</groupId>
+			<artifactId>nosql-document</artifactId>
+			<version>1.0.0-b7</version>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>RELEASE</version>
 			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.jboss.weld</groupId>
 			<artifactId>weld-junit5</artifactId>

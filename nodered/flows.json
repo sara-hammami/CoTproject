@@ -1,0 +1,137 @@
+[
+    {
+        "id": "cb267122068b12c8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f4e4d09847e87127",
+        "type": "rpi-srf",
+        "z": "cb267122068b12c8",
+        "name": "",
+        "topic": "Sensor",
+        "pulse": "0.5",
+        "pins": "7,11",
+        "precision": "1",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "74aed359218510b9"
+            ]
+        ]
+    },
+    {
+        "id": "74aed359218510b9",
+        "type": "change",
+        "z": "cb267122068b12c8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "{\"id\":\"1\",\"value\":$number(payload)}",
+                "tot": "jsonata"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 540,
+        "y": 180,
+        "wires": [
+            [
+                "fd0ac114e05f345d"
+            ]
+        ]
+    },
+    {
+        "id": "fd0ac114e05f345d",
+        "type": "mqtt out",
+        "z": "cb267122068b12c8",
+        "name": "",
+        "topic": "test",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "8e820ccde0cc9316",
+        "x": 790,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "08ed5827f8f5fb4c",
+        "type": "mqtt in",
+        "z": "cb267122068b12c8",
+        "name": "",
+        "topic": "test",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "8e820ccde0cc9316",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 320,
+        "wires": [
+            [
+                "82d714db75d8d6db"
+            ]
+        ]
+    },
+    {
+        "id": "82d714db75d8d6db",
+        "type": "debug",
+        "z": "cb267122068b12c8",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 560,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "8e820ccde0cc9316",
+        "type": "mqtt-broker",
+        "name": "mqtt",
+        "broker": "wss://mqtt.smartwastemanagement.me:8083",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "test",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

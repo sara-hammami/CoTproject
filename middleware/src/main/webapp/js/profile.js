@@ -17,7 +17,7 @@ $(document).ready(function () {
 
             // Update HTML content
             document.getElementById("username").innerText = data.fullname || "Unknown";
-            document.getElementById("usermail").innerText = mail || "Unknown";
+            document.getElementById("useremail").innerText = mail || "Unknown";
         }
     });
 

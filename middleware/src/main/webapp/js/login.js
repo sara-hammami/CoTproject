@@ -101,6 +101,11 @@ async function start() {
                                 location.href = "dashboard.html";
                             }
                         });
+
+                    },
+                    error: function (xhr, status, error) {
+                        // Display an alert with the error message
+                        alert("Error: " + xhr.responseText);
                     }
                 });
             };
