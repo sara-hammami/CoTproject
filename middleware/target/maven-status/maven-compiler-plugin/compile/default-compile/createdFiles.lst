@@ -5,6 +5,7 @@ org\eclipse\jakarta\hello\entities\SensorDB.class
 org\eclipse\jakarta\hello\utils\Identity.class
 org\eclipse\jakarta\hello\JaxRSActivator.class
 org\eclipse\jakarta\hello\entities\User.class
+org\eclipse\jakarta\hello\boundaries\PublishWebsocketEndpoint.class
 org\eclipse\jakarta\hello\controllers\Role.class
 org\eclipse\jakarta\hello\entities\FieldPropertyVisibilityStrategy.class
 org\eclipse\jakarta\hello\boundaries\ForgottenPasswordEndpoint.class
@@ -15,6 +16,7 @@ org\eclipse\jakarta\hello\utils\OAuth2PKCE.class
 org\eclipse\jakarta\hello\repositories\SensorDBRepository.class
 org\eclipse\jakarta\hello\Hello.class
 org\eclipse\jakarta\hello\repositories\UserRepository.class
+org\eclipse\jakarta\hello\controllers\MqttMessageEventManager$1.class
 org\eclipse\jakarta\hello\boundaries\SensorJSONEncoder.class
 org\eclipse\jakarta\hello\controllers\UserManager.class
 org\eclipse\jakarta\hello\boundaries\SignUpEndpoint.class
@@ -22,3 +24,4 @@ org\eclipse\jakarta\hello\boundaries\SensorDBEndpoint.class
 org\eclipse\jakarta\hello\boundaries\SignInEndpoint.class
 org\eclipse\jakarta\hello\boundaries\ProfileEndpoint.class
 org\eclipse\jakarta\hello\boundaries\ForgottenPasswordEndpoint$1.class
+org\eclipse\jakarta\hello\controllers\MqttMessageEventManager.class

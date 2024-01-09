@@ -2,13 +2,13 @@ const CACHE_NAME = 'my-pwa-cache-v1-work';
 const cacheUrls = [
     '/',
     '/welcome.html',
-    '/styles/login.css',
     '/styles/welcome.css',
     '/styles/signup.css',
     '/app.js',
     '/logo.png',
     '/assets/logo2.png',
-    '/assets/welcome.png'
+    '/assets/welcome.png',
+    '/manifest.json'
     // Add other assets and resources you want to cache
 ];
 
@@ -25,11 +25,12 @@ self.addEventListener('install', (event) => {
 self.addEventListener('fetch', (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
-            return response || fetch(event.request);
+            return response || fetch(event.request).catch((error) => {
+                console.error('Error fetching resource:', error);
+            });
         })
     );
 });
-
 self.addEventListener('activate', (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {

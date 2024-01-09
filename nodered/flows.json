@@ -14,7 +14,7 @@
         "name": "",
         "topic": "Sensor",
         "pulse": "0.5",
-        "pins": "7,11",
+        "pins": "18,12",
         "precision": "1",
         "x": 330,
         "y": 180,
@@ -135,3 +135,6 @@
         "sessionExpiry": ""
     }
 ]
+
+
+

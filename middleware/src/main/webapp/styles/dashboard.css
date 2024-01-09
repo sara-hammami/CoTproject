@@ -121,6 +121,24 @@ a {
     font-weight: bold;
 }
 
+
+.welcome-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px; /* Adjust as needed */
+}
+h2{
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #404040;
+    margin: 0; /* Remove default margin to have the h2 flush against the top */
+
+
+}
+
+
 /* Add this media query for responsiveness */
 @media only screen and (max-width: 768px) {
     .menu:hover {
@@ -149,4 +167,3 @@ a {
         z-index: 3;
     }
 }
-
