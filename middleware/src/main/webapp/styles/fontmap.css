@@ -2,6 +2,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'calibri', serif;
+}
+
+body {
+    margin: 0; /* Remove default body margin */
 }
 
 #main-container {
@@ -9,45 +14,54 @@
     background-color: #c9af98;
     display: flex;
     height: 100vh;
+    overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
 }
-
 
 .menu {
     width: fit-content;
     min-height: 100vh;
     transition: width 0.3s;
     overflow: hidden;
+    padding-right: 10px;
+    position: relative; /* Make the menu relative to its container */
+    z-index: 2; /* Set a higher z-index to be on top of the map */
 }
-
 
 .menu:hover {
     width: fit-content;
-    padding-right:5px;
+    padding-right: 5px;
 }
 
-.menu:hover li span:nth-child(2) {
-    display: block;
+.menu-content {
+    position: relative;
 }
 
 .menu-content li {
     list-style: none;
     border-radius: 0px 50px 50px 0;
     transition: .3s;
-    margin-bottom: 20px;
-    padding-left: 10px;
+    margin-bottom: 10px;
+    padding-left: 5px;
 }
+
 .menu-content li:nth-child(1) {
-    margin-top: 20px;
+    margin-top: 50px;
 }
+
 .menu-content li:hover {
     background: #3a4660;
-    padding-right: 10px;
-
+    padding-right: 5px;
+    position: relative;
+    z-index: 2; /* Ensure the hovered item is above other items */
 }
-
 
 .menu-content li span:nth-child(2) {
     display: none;
+}
+
+.menu-content li:hover span:nth-child(2) {
+    display: block;
+    z-index: 3;
 }
 
 a {
@@ -64,56 +78,84 @@ a {
     background: #3a4660;
     border-radius: 50%;
     padding: 10px;
+    position: relative;
+    z-index: 4;
 }
 
+h1 {
+    margin-top: 10px;
+    text-align: center;
+}
 
+/* detect.css */
+
+.detect {
+    text-align: center; /* Center the content within the .detect div */
+    width: 100%; /* Set the width to 100% */
+}
+
+button {
+    background-color: #3a4660;
+    color: rgb(213, 213, 213);
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #293241;
+}
+
+#predictionResults {
+    margin-top: 20px;
+}
+
+/* Add styles for the hamburger button */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+    position: absolute; /* Keep the hamburger button outside the flow of other elements */
+    z-index: 5;
+    color: #3a4660;
+    border-radius: 50%; /* Ensure the hamburger button is above other elements */
+}
+
+.bar {
+    background-color: rgb(213, 213, 213);
+    height: 3px;
+    width: 20px;
+    margin: 2px 0;
+    transition: 0.4s;
+}
+
+/* Rotate the bars for a more typical "hamburger" appearance when menu is active */
+
+/* Add styles for hiding the menu */
+.menu {
+    transition: transform 0.3s;
+    overflow: hidden;
+    transform: translateX(0);
+}
+
+.menu-hidden {
+    transform: translateX(-100%);
+}
+
+/* Map styles */
 #map {
-    width: 95%;
-    height: 100%;
+    width: 100%; /* Set map width to 100% of the screen */
+    height: 100vh;
     position: absolute;
-    top: 20px;
-    bottom: 0;
+    top: 0;
+    left: 0;
+    z-index: 1; /* Set a lower z-index to be below the menu */
     background-color: #e9e9e9;
-}
-.ol-popup {
-    position: absolute;
-    background-color: white;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #cccccc;
-    bottom: 12px;
-    left: -50px;
-    min-width: 280px;
-}
-.ol-popup:after,
-.ol-popup:before {
-    top: 100%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
-}
-.ol-popup:after {
-    border-top-color: white;
-    border-width: 10px;
-    left: 48px;
-    margin-left: -10px;
-}
-.ol-popup:before {
-    border-top-color: #cccccc;
-    border-width: 11px;
-    left: 48px;
-    margin-left: -11px;
-}
-.ol-popup-closer {
-    text-decoration: none;
-    position: absolute;
-    top: 2px;
-    right: 8px;
-}
-.ol-popup-closer:after {
-    content: "✖";
 }

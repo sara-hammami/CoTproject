@@ -237,3 +237,22 @@ label {
     padding: 10px;
     border-radius: 5px;
 }
+
+
+.custom-toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.custom-toast.show {
+    opacity: 0.8;
+}

@@ -17,7 +17,9 @@ public class SensorJSONDecoder implements Decoder.Text<Sensor>{
         String id=jsonObject.getString("id");
         Double value=jsonObject.isNull("value") ? null : jsonObject.getJsonNumber("value").doubleValue();
         Sensor sensor = new Sensor(id,value);
+        System.out.println("sendor decoded ");
         return sensor;
+
 
     }
 

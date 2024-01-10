@@ -126,17 +126,10 @@ a {
     font-size: 24px;
     font-weight: bold;
     color: #fff;
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px;
+    margin-left: 35px
 }
-h2{
 
-    font-size: 20px;
-    font-weight: bold;
-    color: #404040;
-    margin: 0; /* Remove default margin to have the h2 flush against the top */
-
-
-}
 
 
 /* Add this media query for responsiveness */

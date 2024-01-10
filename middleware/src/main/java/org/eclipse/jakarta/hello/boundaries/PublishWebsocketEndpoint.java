@@ -13,17 +13,22 @@ public class PublishWebsocketEndpoint {
     private MqttMessageEventManager mqttlistener;
     private static Hashtable<String, Session> sessions = new Hashtable<>(); // initialize sessions as empty Hashtable
     public static void broadcastMessage(Sensor sensor) {
+        System.out.println("Broadcasting message: " + sensor); // Log to check if the method is called
+
         for (Session session : sessions.values()) {
             try {
-                session.getBasicRemote().sendObject(sensor); // broadcast the message to websocket
-                System.out.println("work: "); // for debugging
+                session.getBasicRemote().sendObject(sensor);
+                System.out.println("Message sent to session " + session.getId()); // Log successful message sending
             } catch (IOException | EncodeException e) {
+                System.err.println("Error sending message to session " + session.getId() + ": " + e.getMessage());
                 e.printStackTrace();
             }
         }
     }
     @OnOpen
     public void onOpen(Session session){
+        System.out.println("session opened ");
+        this.mqttlistener = new MqttMessageEventManager();
         mqttlistener.Hello(); // print Hello on session start, for debugging
         sessions.put(session.getId(), session); //add the new session
 

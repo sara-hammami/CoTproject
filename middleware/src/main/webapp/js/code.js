@@ -1,16 +1,25 @@
 // Function to display a toast message
+
+
 function showToast(message) {
     // Create a toast element
     const toast = document.createElement('div');
-    toast.className = 'toast';
+    toast.className = 'custom-toast';
     toast.textContent = message;
 
     // Append the toast to the body
     document.body.appendChild(toast);
 
-    // Remove the toast after a certain duration
+    // Add the 'show' class to apply the fade-in effect
+    toast.classList.add('show');
+
+    // Remove the 'show' class after a certain duration
     setTimeout(() => {
-        document.body.removeChild(toast);
+        toast.classList.remove('show');
+        // Remove the toast from the DOM after the fade-out effect
+        setTimeout(() => {
+            document.body.removeChild(toast);
+        }, 500);
     }, 3000); // Adjust the duration as needed
 }
 

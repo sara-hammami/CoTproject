@@ -1,11 +1,11 @@
 const CACHE_NAME = 'my-pwa-cache-v1-work';
 const cacheUrls = [
     '/',
-    '/welcome.html',
+    '/index.html',
     '/styles/welcome.css',
     '/styles/signup.css',
-    '/app.js',
-    '/logo.png',
+    '/js/app.js',
+    '/assets/logo.png',
     '/assets/logo2.png',
     '/assets/welcome.png',
     '/manifest.json'

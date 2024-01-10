@@ -7,27 +7,27 @@ const mailController = document.getElementById('email');
 const passwordController = document.getElementById('password');
 const passwordConfirmationController = document.getElementById('passwordConfirmation');
 
-function showToast(message, isError = false) {
+
+
+function showToast(message) {
     // Create a toast element
     const toast = document.createElement('div');
-    toast.className = isError ? 'error-toast' : 'success-toast';
+    toast.className = 'custom-toast';
     toast.textContent = message;
 
     // Append the toast to the body
     document.body.appendChild(toast);
 
-    // Add the show class to fade in the toast
-    setTimeout(() => {
-        toast.classList.add('show');
-    }, 0);
+    // Add the 'show' class to apply the fade-in effect
+    toast.classList.add('show');
 
-    // Remove the toast after a certain duration
+    // Remove the 'show' class after a certain duration
     setTimeout(() => {
         toast.classList.remove('show');
-        // Delay the removal to allow the fade-out transition
+        // Remove the toast from the DOM after the fade-out effect
         setTimeout(() => {
             document.body.removeChild(toast);
-        }, 300);
+        }, 500);
     }, 3000); // Adjust the duration as needed
 }
 function validation(){
