@@ -21,9 +21,7 @@ These are the technologies necessary to run this project:
 - Mosquitto Broker
 - Raspberry pi 4
 - MongoDB
-- Google maps api
+- leaflet(OpenStreetMap) api 
 - HC-SR04 ultrasonic sensor
-- Buzzer
-- Moisture Sensor
-- GPS module
+  
 ![TLS certificate](certificate.PNG)
