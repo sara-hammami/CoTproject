@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'calibri', serif;
+}
+
+body {
+    margin: 0; /* Remove default body margin */
+}
+
+#main-container {
+    width: 100%;
+    background-color: #c9af98;
+    display: flex;
+    height: 100vh;
+    overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
+}
+
+.menu {
+    width: auto;
+    min-height: 100vh;
+    transition: width 0.3s;
+    overflow: hidden;
+    position: relative; /* Make the menu relative to its container */
+    z-index: 2; /* Set a higher z-index to be on top of the map */
+}
+
+.menu:hover {
+    width: auto;
+    padding-right: 5px;
+}
+
+.menu-content {
+    position: relative;
+}
+
+.menu-content li {
+    list-style: none;
+    border-radius: 0px 50px 50px 0;
+    transition: .3s;
+    margin-bottom: 10px;
+    color:rgb(213, 213, 213);
+}
+
+.menu-content li:nth-child(1) {
+    margin-top: 50px;
+}
+
+.menu-content li:hover {
+    background: #3a4660;
+    padding-right: 5px;
+    position: relative;
+    z-index: 2; /* Ensure the hovered item is above other items */
+}
+
+.menu-content li span:nth-child(2) {
+    display: none;
+}
+
+.menu-content li:hover span:nth-child(2) {
+    display: block;
+    z-index: 3;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(213, 213, 213);
+    display: flex;
+    align-items: center;
+    font-family: 'calibri', serif;
+}
+
+.material-symbols-outlined {
+    font-size: 25px;
+    background: #3a4660;
+    border-radius: 50%;
+    padding: 10px;
+    position: relative;
+    z-index: 4;
+}
+
+h1 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+
+/* Add styles for the hamburger button */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 5px;
+    position: absolute; /* Keep the hamburger button outside the flow of other elements */
+    z-index: 5;
+    color: #3a4660;
+    border-radius: 50%; /* Ensure the hamburger button is above other elements */
+}
+
+.bar {
+    background-color: rgb(213, 213, 213);
+    height: 3px;
+    width: 20px;
+    margin: 2px 0;
+    transition: 0.4s;
+}
+
+/* Rotate the bars for a more typical "hamburger" appearance when menu is active */
+
+/* Add styles for hiding the menu */
+.menu {
+    transition: transform 0.3s;
+    overflow: hidden;
+    transform: translateX(0);
+}
+
+.menu-hidden {
+    transform: translateX(-100%);
+}
+
+.can-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.can {
+    width: 200px;
+    background-color: #fff;
+    border: 1px solid #3a4660;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+    flex-grow: 0;
+    margin-top: 40px;
+    margin-right:20px;
+}
+
+.can img {
+    height: 71px;
+}
+
+.can-info {
+    margin-top: 10px;
+}
+
+.can-info img {
+    height: 21px;
+    margin-right: 10px;
+}
+
+.can-info p {
+    font-size: 14px;
+    color: #281852;
+    margin: 0;
+}
+
+.can-percentage {
+    font-size: 18px;
+    color: #281852;
+    font-weight: bold;
+}
+
+
+.welcome-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: 35px
+}
+
+
+
+/* Add this media query for responsiveness */
+@media only screen and (max-width: 768px) {
+    .menu:hover {
+        width: 100%; /* Adjust as needed */
+        padding-right: 0; /* Adjust as needed */
+    }
+
+    .menu-content li {
+        width: 100%; /* Ensure full width for list items */
+        box-sizing: border-box; /* Include padding and border in the total width */
+        padding: 10px; /* Adjust as needed */
+        margin-right: 0; /* Adjust as needed */
+    }
+
+    .menu-content li:hover {
+        padding-right: 0; /* Adjust as needed */
+    }
+
+
+    .menu-content li span:nth-child(2) {
+        display: none;
+    }
+
+    .menu-content li:hover span:nth-child(2) {
+        display: block;
+        z-index: 3;
+    }
+}
