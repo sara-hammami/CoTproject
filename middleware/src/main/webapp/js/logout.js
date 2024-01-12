@@ -1,7 +1,7 @@
 // logout.js
 
 async function logout() {
-    // Your logout logic here
+    console.log('Logout function is called');
     //  clearing all session-related data
     const deleted1 = await secureStorage.deleteSecureData("accessToken");
     const deleted2 = await secureStorage.deleteSecureData("refreshToken");

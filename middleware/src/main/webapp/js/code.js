@@ -1,6 +1,5 @@
 // Function to display a toast message
 
-
 function showToast(message) {
     // Create a toast element
     const toast = document.createElement('div');
@@ -25,7 +24,7 @@ function showToast(message) {
 
 // Function to send a verification code to the server
 async function verifCode(code) {
-    const url = `https://smarwastemanagement.ltn:8443/api/mail/${code}`;
+    const url = `https://smartwastemanagement.me/api/mail/${code}`;
 
     try {
         const response = await fetch(url, {

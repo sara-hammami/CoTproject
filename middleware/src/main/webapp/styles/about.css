@@ -5,23 +5,29 @@
     font-family: 'calibri', serif;
 }
 
+body {
+    margin: 0; /* Remove default body margin */
+}
+
 #main-container {
     width: 100%;
     background-color: #c9af98;
     display: flex;
+    height: 100vh;
+    overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
 }
 
 .menu {
-    width: fit-content;
+    width: auto;
     min-height: 100vh;
     transition: width 0.3s;
     overflow: hidden;
-    padding-right: 10px;
-    position: fixed;
+    position: relative; /* Make the menu relative to its container */
+    z-index: 2; /* Set a higher z-index to be on top of the map */
 }
 
 .menu:hover {
-    width: fit-content;
+    width: auto;
     padding-right: 5px;
 }
 
@@ -33,18 +39,19 @@
     list-style: none;
     border-radius: 0px 50px 50px 0;
     transition: .3s;
-    margin-bottom: 20px;
-    padding-left: 10px;
-    margin-right: 5px;
+    margin-bottom: 10px;
+    color:rgb(213, 213, 213);
 }
 
 .menu-content li:nth-child(1) {
-    margin-top: 20px;
+    margin-top: 50px;
 }
 
 .menu-content li:hover {
     background: #3a4660;
     padding-right: 5px;
+    position: relative;
+    z-index: 2; /* Ensure the hovered item is above other items */
 }
 
 .menu-content li span:nth-child(2) {
@@ -61,12 +68,11 @@ a {
     color: rgb(213, 213, 213);
     display: flex;
     align-items: center;
-    font-family: 'calibri';
+    font-family: 'calibri', serif;
 }
 
 .material-symbols-outlined {
     font-size: 25px;
-    margin-right: 10px;
     background: #3a4660;
     border-radius: 50%;
     padding: 10px;
@@ -74,44 +80,197 @@ a {
     z-index: 4;
 }
 
-.about{
-    margin-left: 50px;
+h1 {
+    margin-top: 10px;
+    text-align: center;
 }
 
-/* Media queries for responsiveness */
+
+/* Add styles for the hamburger button */
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    margin-top: 5px;
+    position: absolute; /* Keep the hamburger button outside the flow of other elements */
+    z-index: 5;
+    color: #3a4660;
+    border-radius: 50%; /* Ensure the hamburger button is above other elements */
+}
+
+.bar {
+    background-color: rgb(213, 213, 213);
+    height: 3px;
+    width: 20px;
+    margin: 2px 0;
+    transition: 0.4s;
+}
+
+/* Rotate the bars for a more typical "hamburger" appearance when menu is active */
+
+/* Add styles for hiding the menu */
+.menu {
+    transition: transform 0.3s;
+    overflow: hidden;
+    transform: translateX(0);
+}
+
+.menu-hidden {
+    transform: translateX(-100%);
+}
+.about {
+    overflow-y: auto;
+    position: absolute;
+    z-index: 1; /* Set a lower z-index to be below the menu */
+    background-color:#e9e9e9;/*#c9af98;*/
+    padding:5px;
+}
+
+.about h2 {
+    color: #3a4660;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+    text-align: justify;
+}
+
+#logo {
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 20px auto;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about h3, .about h4 {
+    color: #3a4660;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Add separator line */
+.about .separator-line-small {
+    width: 50%;
+    height: 2px;
+    background-color: #3a4660;
+    margin: 10px auto;
+}
+
+.about ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.about li {
+    margin-bottom: 10px;
+}
+
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+    display: none;
+}
+
+
+/* Caption text */
+.text {
+    font-size: 20px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-weight: bolder;
+    color:snow;
+    background: rgb(0, 0, 0); /* Fallback color */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4}
+    to {opacity: 1}
+}
+
+
+.separator {
+    border-top: 1px solid #ccc; /* Couleur et épaisseur de la ligne */
+    margin: 10px 0; /* Marge pour espacement */
+}
+
+/* Responsive adjustments */
 @media only screen and (max-width: 768px) {
-    .menu:hover {
-        width: 100%;
-        padding-right: 0;
-    }
-
-    .menu-content li {
-        width: 100%;
-        box-sizing: border-box;
-        padding: 10px;
-        margin-right: 0;
-    }
-
-    .menu-content li:hover {
-        padding-right: 0;
-    }
-
-    .menu-content li span:nth-child(2) {
-        display: none;
-    }
-
-    .menu-content li:hover span:nth-child(2) {
-        display: block;
-        z-index: 3;
-    }
-
     .container {
         width: 100%;
-        padding: 15px;
+    }
+    .about h2 {
+        font-size: 1.2em ;
+    }
+    .about h3 {
+        font-size: 1.2em ;
+    }
+    #logo{
+        width: 120px;
+        height: 120px;
+        margin: 15px auto;
+    }
+    .text {
+        font-size: 12px;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        font-weight: bolder;
+        color:snow;
+        background: rgb(0, 0, 0); /* Fallback color */
+        background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+        height: auto;
     }
 
-    .container img {
-        width: 100%;
-        margin-top: 10px;
-    }
 }

@@ -1,88 +1,114 @@
-
-
 function toggleMenu() {
     var menu = document.querySelector('.menu');
     menu.classList.toggle('menu-hidden');
 }
+
 var accesstoken = localStorage.getItem("accesstoken");
 var mail = localStorage.getItem("mail");
 var Authorizationheader = "Bearer " + accesstoken;
+const storedSensorData = JSON.parse(localStorage.getItem('data')) || [];
 
-const apiUrl = 'https://smarwastemanagement.ltn:8443/api/sensor';
+const apiUrl = 'https://smartwastemanagement.me/api/sensor';
 const cans = [
-    { id: 0, percentage: null },
-    { id: 1, percentage: null },
+    { "id": "0", percentage: null },
+    { "id": "1", percentage: null },
 ];
 const nominatimBaseUrl = 'https://nominatim.openstreetmap.org/reverse';
 
 // Establish WebSocket connection
-const socket = new WebSocket('wss://smarwastemanagement.ltn:8443/pushes');
 
 // Initialize user object
 let user = { name: '' };
+let canContainer;
+
+const socketUrl = 'wss://smartwastemanagement.me/pushes';
+let socket;
+// Function to update the UI for a specific can
+function updateCanUI(canId, newPercentage) {
+    const canElement = document.querySelector(`#can-${canId}`);
+    if (canElement) {
+        const percentageText = canElement.querySelector('.percentage-text');
+        percentageText.textContent = `${newPercentage}%`;
+    }
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        // Fetch user data
-        const userData = await getUser();
-        user = userData;
+    await renderMainContent();
 
-        // Fetch initial coordinates for each can
-        for (const can of cans) {
-            const coordinates = await getLongLat(can.id);
-            can.coordinates = coordinates;
-        }
-
-        // Render main content
-        await renderMainContent();
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-    }
 });
+function setupWebSocket(){
 
-socket.addEventListener('open', (event) => {
-    console.log('WebSocket connection opened:', event);
-});
+    socket = new WebSocket(socketUrl);
+    console.log("websocket", socket);
+    socket.addEventListener('open', (event) => {
+        console.log('WebSocket connection opened:', event);
+    });
 
-socket.addEventListener('message', async (event) => {
-    try {
-        const data = JSON.parse(event.data);
-        console.log('WebSocket data received:', data);
 
-        // Update the percentage of the corresponding can based on the WebSocket data
-        const canId = data.id;
-        const can = cans.find((can) => can.id === canId);
+    socket.addEventListener('message', async (event) => {
+        var appContainer = document.getElementById('main-container');
+        try {
+            const data = JSON.parse(event.data);
+            console.log('WebSocket data received:', data);
 
-        if (can) {
-            const distance = data.value;
-            const percentage = 100.0 - (distance / 25.0) * 100;
-            can.percentage = parseFloat(percentage.toFixed(2));
-
-            // Fetch address and update UI
-            const address = await getAddress(can.id);
-            renderMainContent();
-            console.log('Address:', address);
             // Save the data to local storage
-            saveDataToLocalStorage(data);
+            storedSensorData.push(data);
+            localStorage.setItem('data', JSON.stringify(storedSensorData));
 
-            // Update the UI for the specific can element
-            const canElement = document.querySelector(`.can[data-id="${can.id}"]`);
-            if (canElement) {
-                const percentageText = canElement.querySelector('.percentage-text');
-                percentageText.textContent = `${can.percentage}%`;
+            // Update the percentage of the corresponding can based on the WebSocket data
+            const canId = data.id.toString();  // Convert to string
+            console.log('canId:', canId);
+            const can = cans.find((can) => can.id === canId);
+            console.log('can:', can);
+            if (can) {
+                console.log('Found can:', can);
+
+                const distance = parseFloat(data.value);
+                const percentage = 100.0 - (distance / 25.0) * 100;
+                can.percentage = parseFloat(percentage.toFixed(2));
+                console.log('New percentage:', can.percentage);
+                const canElement = document.querySelector(`#can-${canId}`);
+                if (canElement) {
+                    await updateCanUI(can, canElement);
+                }
+                // Fetch address and update UI
+                //const address = await getAddress(can.id);
+                //console.log('Address:', address);
+
+                // Update the UI immediately for the specific can
+
             }
+        } catch (error) {
+            console.error('Error parsing WebSocket data:', error);
         }
-    } catch (error) {
-        console.error('Error parsing WebSocket data:', error);
-    }
-});
-// Function to save data to local storage
-function saveDataToLocalStorage(data) {
-    const storedSensorData = JSON.parse(localStorage.getItem('sensorData')) || [];
-    storedSensorData.push(data);
-    localStorage.setItem('sensorData', JSON.stringify(storedSensorData));
-    updateNotificationBadge();
+        const preservedContent1 = appContainer.querySelector('.menu').outerHTML;
+        const preservedContent2 = appContainer.querySelector('.hamburger').outerHTML;
+        // Clear existing content
+        appContainer.innerHTML = '';
+
+        // Reappend preserved content
+        appContainer.innerHTML = preservedContent1 + preservedContent2;
+        await renderMainContent();
+    });
+    socket.addEventListener('error', (error) => {
+        // Handle WebSocket errors
+        console.error('WebSocket error:', error);
+    });
+
+    socket.addEventListener('close', (event) => {
+        // Handle WebSocket closure
+        console.log('WebSocket closed:', event);
+
+        // Attempt to reconnect after a delay (e.g., 5 seconds)
+        setTimeout(setupWebSocket, 5000);
+    });
+
+
 }
+
+setupWebSocket()
+
+
 async function renderMainContent() {
     try {
         const appContainer = document.getElementById('main-container');
@@ -99,45 +125,23 @@ async function renderMainContent() {
 
         // Fetch user data and set the welcome message
         const userData = await getUser();
-        welcomeMessage.textContent = `Welcome, ${userData.name}`;
+        welcomeMessage.textContent = `Welcome, ${userData.name}`
 
         mainContent.appendChild(welcomeMessage);
+        mainContent.appendChild(canContainer);
+        appContainer.appendChild(mainContent);
 
         // Fetch addresses and update UI for each can
         for (const can of cans) {
-            const address = await getAddress(can.id);
-            can.address = address;
-        }
-
-        // Render cans after fetching addresses
-        const canElements = await Promise.all(cans.map(async (can) => {
-            try {
-                const canElement = await renderCan(can);
-                console.log('Can Element:', canElement);
-
-                if (canElement instanceof HTMLElement) {
-                    return canElement;
-                } else {
-                    console.error('Invalid can element:', canElement);
-                    return null;
-                }
-            } catch (renderCanError) {
-                console.error('Error rendering can:', renderCanError);
-                return null;
+            const canElement = await renderCan(can);
+            if (canElement) {
+                canContainer.appendChild(canElement);
             }
-        }));
-
-        canElements
-            .filter((element) => element !== null)
-            .forEach((canElement) => canContainer.appendChild(canElement));
-
-        mainContent.appendChild(canContainer);
-        appContainer.appendChild(mainContent);
+        }
     } catch (error) {
         console.error('Error rendering main content:', error);
     }
 }
-
 
 async function renderCan(can) {
     try {
@@ -168,7 +172,6 @@ async function renderCan(can) {
         locationImage.src = './assets/location.png';
         locationImage.alt = 'Location Image';
 
-
         const addressText = document.createElement('p');
         addressText.classList.add('address-text'); // Add a class to identify this element
         addressText.textContent = 'Loading...'; // Initially empty, to be filled later
@@ -178,6 +181,7 @@ async function renderCan(can) {
         percentageImage.alt = 'Percentage Image';
 
         const percentageText = document.createElement('p');
+        percentageText.classList.add('percentage-text');
         percentageText.textContent = can.percentage !== null ? `${can.percentage}%` : 'Loading...';
 
         canInfo.appendChild(locationImage);
@@ -209,7 +213,7 @@ async function renderCan(can) {
 function getUser() {
     return new Promise((resolve, reject) => {
         $.ajax({
-            url: `https://smarwastemanagement.ltn:8443/api/profile/${mail}`,
+            url: `https://smartwastemanagement.me/api/profile/${mail}`,
             type: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -230,10 +234,11 @@ function getUser() {
         });
     });
 }
+
 async function getRequest() {
     try {
         const accessToken = localStorage.getItem("accesstoken");
-        const url = "https://smarwastemanagement.ltn:8443/api/sensor";
+        const url = "https://smartwastemanagement.me/api/sensor";
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -329,6 +334,17 @@ async function showLocationPage(coordinates, addressText, binAddress) {
 
         // Update UI
         addressText.textContent = `Address: ${binAddress}`;
+
+        // Include the map.js script dynamically
+        const mapScript = document.createElement('script');
+        mapScript.src = 'map.js';
+        mapScript.async = true;
+        document.head.appendChild(mapScript);
+
+        // Wait for the script to be loaded, and then call getDirectionsToDestination
+        mapScript.onload = function () {
+            getDirectionsToDestination(userCoordinates[0], userCoordinates[1], destinationLat, destinationLon);
+        };
 
         // Redirect to map.html with coordinates and address as URL parameters
         const mapUrl = `map.html?lat=${destinationLat}&long=${destinationLon}&address=${encodeURIComponent(binAddress)}`;

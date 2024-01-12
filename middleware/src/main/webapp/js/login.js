@@ -44,7 +44,7 @@ async function start() {
     var step2 = "Bearer " + step;
 
     $.ajax({
-        url: 'https://smarwastemanagement.ltn:8443/api/authorize',
+        url: 'https://smartwastemanagement.me/api/authorize',
         type: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -64,7 +64,7 @@ async function start() {
                 let reqObj = {"mail": mail, "password": password, "signInId": signInId};
 
                 $.ajax({
-                    url: 'https://smarwastemanagement.ltn:8443/api/authenticate/',
+                    url: 'https://smartwastemanagement.me/api/authenticate/',
                     type: 'POST',
                     data: JSON.stringify(reqObj),
                     dataType: 'json',
@@ -79,7 +79,7 @@ async function start() {
                         var access = "Bearer " + utf8_to_b64_updated(data.authCode + '#' + code_verifier);
 
                         $.ajax({
-                            url: 'https://smarwastemanagement.ltn:8443/api/oauth/token',
+                            url: 'https://smartwastemanagement.me/api/oauth/token',
                             type: 'GET',
                             headers: {
                                 'Accept': 'application/json',

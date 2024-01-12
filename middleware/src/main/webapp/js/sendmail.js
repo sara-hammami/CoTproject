@@ -1,7 +1,7 @@
 // sendMail.js
 
 async function sendMail(email) {
-    const url = `https://smarwastemanagement.ltn:8443/api/mail/${email}`;
+    const url = `https://smartwastemanagement.me/api/mail/${email}`;
 
     try {
         const response = await fetch(url, {

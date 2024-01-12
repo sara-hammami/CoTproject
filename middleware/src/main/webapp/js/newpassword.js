@@ -1,6 +1,6 @@
 // Function to change the password
 async function changePassword(code, password) {
-    const url = `https://smarwastemanagement.ltn:8443/api/mail/${code}/${password}`;
+    const url = `https://smartwastemanagement.me/api/mail/${code}/${password}`;
 
     try {
         const response = await fetch(url, {

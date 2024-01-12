@@ -1,16 +1,24 @@
-
+// Function to toggle the visibility of the menu
 function toggleMenu() {
     var menu = document.querySelector('.menu');
     menu.classList.toggle('menu-hidden');
 }
 
-// Initialize the map
-var map = L.map('map').setView([0, 0], 15);
+// Create a Leaflet map with an initial view centered at [0, 0] and zoom level 15
+var map = L.map('map', {
+    zoomControl: false // Disable the default zoom control
+}).setView([0, 0], 15);
 
-// Add OpenStreetMap tile layer
+// Add an OpenStreetMap tile layer to the map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'
 }).addTo(map);
+
+// Move the Leaflet zoom control to the top-right corner of the map
+L.control.zoom({ position: 'topright' }).addTo(map);
+
+// Global variable to track the visibility of directions
+var directionsVisible = true;
 
 // Function to get the current position and display address in a popup
 function getCurrentPosition() {
@@ -88,7 +96,7 @@ async function getAddressFromLocation(lat, lon) {
 async function getRequest() {
     try {
         const accessToken = localStorage.getItem("accesstoken");
-        const url = "https://smarwastemanagement.ltn:8443/api/sensor";
+        const url = "https://smartwastemanagement.me/api/sensor";
         const response = await fetch(url, {
             method: 'GET',
             headers: {
@@ -130,4 +138,29 @@ function getDirectionsToDestination(startLat, startLon, destinationLat, destinat
     map.on('routing:clear', function () {
         map.removeLayer(destinationMarker);
     });
+    var detailsContainer = document.createElement('div');
+    detailsContainer.style.position = 'absolute';
+    detailsContainer.style.bottom = '10px';
+    detailsContainer.style.left = '10px';
+    detailsContainer.style.backgroundColor = '#fff';
+    detailsContainer.style.padding = '10px';
+    detailsContainer.style.border = '1px solid #ccc';
+    detailsContainer.style.zIndex = '1000'; // Ensure it's on top
+    detailsContainer.style.cursor = 'pointer'; // Set cursor to pointer for click interaction
+
+// Add some initial text to the details container
+    detailsContainer.innerHTML += ' Click here to toggle details';
+
+// Event handler to toggle directions visibility when clicking on the container
+    detailsContainer.addEventListener('click', function () {
+        directionsVisible = !directionsVisible;
+        control.setWaypoints([
+            L.latLng(startLat, startLon),
+            L.latLng(destinationLat, destinationLon)
+        ]);
+        control[directionsVisible ? 'show' : 'hide']();
+    });
+
+    map.getContainer().appendChild(detailsContainer);
 }
+// Container to display step-by-step details
