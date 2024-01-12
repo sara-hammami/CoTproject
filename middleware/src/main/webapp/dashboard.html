@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="icon" href="./favicon.png" type="image/png">
+    <link rel="manifest" href="manifest.json" />
+    <title>Garbage Monitoring System</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/dashboard.js"></script>
+    <script src="./js/logout.js"></script>
+
+</head>
+
+<body>
+<div id="main-container">
+    <div class="hamburger" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="menu">
+
+        <ul class="menu-content">
+            <li><a href="dashboard.html"><span class="material-symbols-outlined">home</span><span>Dashboard</span></a></li>
+            <li><a href="map.html"><span class="material-symbols-outlined">explore</span><span>Explore</span></a></li>
+            <li><a href="detect.html"><span class="material-symbols-outlined">photo_camera</span><span>Detection</span></a></li>
+            <li><a href="about.html"><span class="material-symbols-outlined">help</span><span>About</span></a></li>
+            <li><a  id="logoutLink" href="login.html"><span class="material-symbols-outlined">logout</span><span>Logout</span></a></li>
+        </ul>
+    </div>
+
+
+
+
+
+</div>
+
+
+</body>
+</html>

@@ -31,6 +31,7 @@ public class SensorDBEndpoint {
     public List<SensorDB> findAll() { //GET METHOD to receive a list of all SensorDB data from the database
         return repository.findAll()
                 .collect(toList());
+
     }
     @POST // POST METHOD to send the data of the sensor in JSON format and save it in the database
     public void save(SensorDB sensor) {
