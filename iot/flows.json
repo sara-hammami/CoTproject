@@ -1,0 +1,196 @@
+[
+    {
+        "id": "eb1e0cc3e9a1ef22",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0d97f4e785344980",
+        "type": "inject",
+        "z": "eb1e0cc3e9a1ef22",
+        "name": "Capture Image",
+        "props": [
+            {
+                "p": "payload",
+                "v": "",
+                "vt": "date"
+            },
+            {
+                "p": "topic",
+                "v": "",
+                "vt": "str"
+            }
+        ],
+        "repeat": "900",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 580,
+        "wires": [
+            [
+                "582ec76295e0eb91"
+            ]
+        ]
+    },
+    {
+        "id": "582ec76295e0eb91",
+        "type": "exec",
+        "z": "eb1e0cc3e9a1ef22",
+        "command": "libcamera-jpeg -o image.jpg",
+        "addpay": "payload",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 360,
+        "y": 580,
+        "wires": [
+            [
+                "109f71090365ecb5"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "fc2c785c48ae3659",
+        "type": "exec",
+        "z": "eb1e0cc3e9a1ef22",
+        "command": "python3 /home/hp/convert.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 920,
+        "y": 660,
+        "wires": [
+            [
+                "73c3306e0a517a81"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "73c3306e0a517a81",
+        "type": "function",
+        "z": "eb1e0cc3e9a1ef22",
+        "name": "Construct JSON",
+        "func": "msg.payload = {\"image\": msg.payload};\nreturn msg;",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 940,
+        "y": 580,
+        "wires": [
+            [
+                "52fd9fc223989d46"
+            ]
+        ]
+    },
+    {
+        "id": "52fd9fc223989d46",
+        "type": "mqtt out",
+        "z": "eb1e0cc3e9a1ef22",
+        "name": "",
+        "topic": "camera",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "cb2e03fe09c9b25e",
+        "x": 1140,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "109f71090365ecb5",
+        "type": "exec",
+        "z": "eb1e0cc3e9a1ef22",
+        "command": "python3 /home/hp/garbage_class_detection/predict.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 480,
+        "y": 720,
+        "wires": [
+            [
+                "fc2c785c48ae3659"
+            ],
+            [
+                "4004489c5b88caa3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "4004489c5b88caa3",
+        "type": "debug",
+        "z": "eb1e0cc3e9a1ef22",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "cb2e03fe09c9b25e",
+        "type": "mqtt-broker",
+        "name": "broker",
+        "broker": "wss://mqtt.smartwastemanagement.me:8083",
+        "port": "1883",
+        "tls": "",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
